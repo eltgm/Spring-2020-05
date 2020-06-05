@@ -2,7 +2,7 @@ package ru.otus.dao;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import ru.otus.domain.Answer;
 import ru.otus.domain.Exercise;
 
@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-@Repository
+@Component
 @PropertySource("classpath:application.properties")
 public class ExercisesDAOImpl implements ExercisesDAO {
     private static final String COMMA_DELIMITER = ",";
