@@ -1,21 +1,22 @@
 package ru.otus;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import ru.otus.controller.ConsoleController;
+import org.springframework.context.annotation.*;
+import ru.otus.controller.ConsoleComponent;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 @ComponentScan
 @Configuration
+@PropertySource("classpath:application.properties")
 public class Main {
 
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
-        final var consoleController = context.getBean(ConsoleController.class);
+        final var consoleController = context.getBean(ConsoleComponent.class);
 
         consoleController.startTesting();
     }
@@ -23,5 +24,10 @@ public class Main {
     @Bean
     public Scanner getScanner() {
         return new Scanner(System.in);
+    }
+
+    @Bean
+    public BufferedReader getBufferedReader(@Value("${questions.path}") String exercisesFileName) {
+        return new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(exercisesFileName)));
     }
 }

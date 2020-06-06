@@ -1,30 +1,25 @@
 package ru.otus.dao;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.otus.domain.Answer;
 import ru.otus.domain.Exercise;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 @Component
-@PropertySource("classpath:application.properties")
-public class ExercisesDAOImpl implements ExercisesDAO {
+@RequiredArgsConstructor
+public class ExercisesDaoImpl implements ExercisesDao {
     private static final String COMMA_DELIMITER = ",";
-    private final String fileName;
     private final List<Exercise> exercises = new ArrayList<>();
     private boolean isInit = false;
 
-    public ExercisesDAOImpl(@Value("${questions.path}") String exercisesFileName) {
-        this.fileName = exercisesFileName;
-    }
+    private final BufferedReader br;
 
     @Override
     public List<Exercise> getAllExercises() {
@@ -38,7 +33,7 @@ public class ExercisesDAOImpl implements ExercisesDAO {
     public void init() {
         List<List<String>> records = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(fileName)))) {
+        try (br) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(COMMA_DELIMITER);

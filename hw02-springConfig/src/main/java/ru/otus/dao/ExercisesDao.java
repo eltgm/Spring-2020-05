@@ -4,6 +4,6 @@ import ru.otus.domain.Exercise;
 
 import java.util.List;
 
-public interface ExercisesDAO {
+public interface ExercisesDao {
     List<Exercise> getAllExercises();
 }

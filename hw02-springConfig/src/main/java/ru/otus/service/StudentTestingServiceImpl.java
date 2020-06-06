@@ -3,7 +3,7 @@ package ru.otus.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
-import ru.otus.dao.ExercisesDAO;
+import ru.otus.dao.ExercisesDao;
 import ru.otus.domain.Answer;
 import ru.otus.domain.Exercise;
 import ru.otus.exception.NotCorrectException;
@@ -14,10 +14,10 @@ import java.util.List;
 @PropertySource("classpath:application.properties")
 public class StudentTestingServiceImpl implements StudentTestingService {
     private static final int CHAR_OFFSET = 97;
-    private final ExercisesDAO exercisesDAO;
+    private final ExercisesDao exercisesDAO;
     private final int toPass;
 
-    public StudentTestingServiceImpl(ExercisesDAO exercisesDAO, @Value("${questions.toPass}") int toPass) {
+    public StudentTestingServiceImpl(ExercisesDao exercisesDAO, @Value("${questions.toPass}") int toPass) {
         this.exercisesDAO = exercisesDAO;
         this.toPass = toPass;
     }

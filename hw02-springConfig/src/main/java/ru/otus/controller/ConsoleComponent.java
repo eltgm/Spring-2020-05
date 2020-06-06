@@ -1,16 +1,16 @@
 package ru.otus.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 import ru.otus.service.StudentTestingService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-@Controller
+@Component
 @RequiredArgsConstructor
-public class ConsoleController {
+public class ConsoleComponent {
     private final StudentTestingService testingService;
     private final Scanner scanner;
 
