@@ -1,4 +1,4 @@
-package ru.otus.controller;
+package ru.otus.component;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

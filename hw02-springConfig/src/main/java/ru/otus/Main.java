@@ -3,7 +3,7 @@ package ru.otus;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
-import ru.otus.controller.ConsoleComponent;
+import ru.otus.component.ConsoleComponent;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
