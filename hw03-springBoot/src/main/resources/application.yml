@@ -1,0 +1,6 @@
+questions:
+  path: "/exercises"
+  toPass: 3
+application:
+  message: "Test Props msg"
+  locale: ru_RU
