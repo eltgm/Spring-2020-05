@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 @Component
 @RequiredArgsConstructor
-public class ConsoleComponent {
+public class ConsoleComponent implements ConsoleInterface {
     private static final int STATUS_OK = 0;
 
     private final StudentTestingService testingService;
@@ -20,6 +20,7 @@ public class ConsoleComponent {
     private final MessageSource messageSource;
     private final LocaleProps localeProps;
 
+    @Override
     public int startTesting() {
         var message = messageSource.getMessage("exam.userName", null, localeProps.getLocale());
 
@@ -29,6 +30,18 @@ public class ConsoleComponent {
         System.out.println(testingService.getExercisesString());
 
         return showTestResult(studentName);
+    }
+
+    @Override
+    public List<String> getAnswers(int questionsCount) {
+        final var answers = new ArrayList<String>();
+
+        for (int i = 1; i <= questionsCount; i++) {
+            System.out.println(i + ": ");
+            answers.add(scanner.nextLine());
+        }
+
+        return answers;
     }
 
     private int showTestResult(String studentName) {
@@ -48,16 +61,5 @@ public class ConsoleComponent {
         }
 
         return STATUS_OK;
-    }
-
-    public List<String> getAnswers(int questionsCount) {
-        final var answers = new ArrayList<String>();
-
-        for (int i = 1; i <= questionsCount; i++) {
-            System.out.println(i + ": ");
-            answers.add(scanner.nextLine());
-        }
-
-        return answers;
     }
 }
