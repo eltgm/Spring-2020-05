@@ -7,7 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
-import ru.otus.component.ConsoleInterface;
+import ru.otus.component.ConsoleComponent;
 import ru.otus.dao.ExercisesDao;
 import ru.otus.domain.Exercise;
 
@@ -25,7 +25,7 @@ class ConsoleComponentTest {
     @Mock
     private static Scanner scanner;
     @InjectMocks
-    private static ConsoleInterface consoleComponent;
+    private static ConsoleComponent consoleComponent;
 
     @BeforeEach
     public void init() {
