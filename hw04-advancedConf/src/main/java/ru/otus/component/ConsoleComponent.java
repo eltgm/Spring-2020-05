@@ -10,15 +10,10 @@ import org.springframework.shell.standard.ShellOption;
 import ru.otus.configuration.LocaleProps;
 import ru.otus.service.StudentTestingService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 @ShellComponent
 @RequiredArgsConstructor
 public class ConsoleComponent implements ConsoleInterface {
     private final StudentTestingService testingService;
-    private final Scanner scanner;
     private final MessageSource messageSource;
     private final LocaleProps localeProps;
     private String userName;
@@ -38,20 +33,8 @@ public class ConsoleComponent implements ConsoleInterface {
         showTestResult(userName);
     }
 
-    @Override
-    public List<String> getAnswers(int questionsCount) {
-        final var answers = new ArrayList<String>();
-
-        for (int i = 1; i <= questionsCount; i++) {
-            System.out.println(i + ": ");
-            answers.add(scanner.nextLine());
-        }
-
-        return answers;
-    }
-
     private void showTestResult(String studentName) {
-        final var answers = getAnswers(testingService.getExercisesCount());
+        final var answers = testingService.getAnswers();
 
         final var isPassed = testingService.isPass(answers);
 

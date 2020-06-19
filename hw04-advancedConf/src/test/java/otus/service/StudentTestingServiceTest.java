@@ -24,6 +24,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -36,6 +37,8 @@ import static org.mockito.Mockito.when;
 @ActiveProfiles("test")
 class StudentTestingServiceTest {
     @MockBean
+    private Scanner scanner;
+    @MockBean
     private ExercisesDao exercisesDAO;
     @Autowired
     private StudentTestingService studentTestingService;
@@ -46,6 +49,9 @@ class StudentTestingServiceTest {
                 Collections.singletonList(new Exercise("2+2",
                         List.of(new ru.otus.domain.Answer("4", true),
                                 new ru.otus.domain.Answer("5", false)))));
+
+        when(scanner.nextLine()).then((Answer<String>) invocationOnMock -> "Test");
+        // when(exercisesDAO.getAllExercises().size()).then((Answer<Integer>) invocationOnMock -> 5);
     }
 
     @DisplayName("Тест получения отформатированной строки с вопросами из теста")
@@ -54,14 +60,6 @@ class StudentTestingServiceTest {
         final var exercisesString = studentTestingService.getExercisesString();
 
         assertNotEquals("Failed to load questions!", exercisesString);
-    }
-
-    @DisplayName("Тест получения количества вопросов")
-    @Test
-    void getExercisesCount() {
-        final var exercisesCount = studentTestingService.getExercisesCount();
-
-        assertEquals(1, exercisesCount);
     }
 
     @DisplayName("Тест получения положительного результата тестирования")
@@ -78,6 +76,16 @@ class StudentTestingServiceTest {
         final var result = studentTestingService.isPass(List.of("б"));
 
         assertFalse(result);
+    }
+
+    @DisplayName("Тест получения ответов от пользователя")
+    @Test
+    void getAnswers() {
+        final var answers = studentTestingService.getAnswers();
+
+        final var expectedValue = List.of("Test");
+
+        assertArrayEquals(expectedValue.toArray(), answers.toArray());
     }
 
     @TestConfiguration

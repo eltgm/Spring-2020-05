@@ -5,7 +5,7 @@ import java.util.List;
 public interface StudentTestingService {
     String getExercisesString();
 
-    int getExercisesCount();
-
     boolean isPass(List<String> answers);
+
+    List<String> getAnswers();
 }

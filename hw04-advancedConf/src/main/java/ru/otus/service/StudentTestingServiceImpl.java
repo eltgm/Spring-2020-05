@@ -10,7 +10,9 @@ import ru.otus.domain.Answer;
 import ru.otus.domain.Exercise;
 import ru.otus.exception.NotCorrectException;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +21,7 @@ public class StudentTestingServiceImpl implements StudentTestingService {
     private final MessageSource messageSource;
     private final LocaleProps localeProps;
     private final YamlProps yamlProps;
+    private final Scanner scanner;
 
     @Override
     public String getExercisesString() {
@@ -48,11 +51,6 @@ public class StudentTestingServiceImpl implements StudentTestingService {
         }
 
         return stringBuilder.toString();
-    }
-
-    @Override
-    public int getExercisesCount() {
-        return exercisesDAO.getAllExercises().size();
     }
 
     @Override
@@ -87,5 +85,22 @@ public class StudentTestingServiceImpl implements StudentTestingService {
         System.out.println(resultAnswer);
 
         return rightAnswers >= yamlProps.getToPass();
+    }
+
+    @Override
+    public List<String> getAnswers() {
+        final var answers = new ArrayList<String>();
+        final var questionsCount = getExercisesCount();
+
+        for (int i = 1; i <= questionsCount; i++) {
+            System.out.println(i + ": ");
+            answers.add(scanner.nextLine());
+        }
+
+        return answers;
+    }
+
+    private int getExercisesCount() {
+        return exercisesDAO.getAllExercises().size();
     }
 }
