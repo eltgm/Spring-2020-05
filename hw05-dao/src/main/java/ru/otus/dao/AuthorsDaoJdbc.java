@@ -32,7 +32,8 @@ public class AuthorsDaoJdbc implements AuthorsDao {
 
     @Override
     public List<Author> getAll() {
-        return namedJdbc.getJdbcOperations().query("select * from author a " +
+        return namedJdbc.getJdbcOperations().query("select a.id, a.name, g.id, g.name, b.id, b.name, b.publish_date, b.author_id, b.genre_id " +
+                "from author a " +
                 "left join `book` b on a.id = b.author_id " +
                 "left join `genre` g on g.id = b.genre_id ", new AuthorsMapper());
     }

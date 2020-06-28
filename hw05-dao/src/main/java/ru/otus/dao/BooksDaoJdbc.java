@@ -57,7 +57,8 @@ public class BooksDaoJdbc implements BooksDao {
 
         try {
             final var book = namedJdbc.queryForObject(
-                    "select * from book b " +
+                    "select b.id, b.name, b.publish_date, b.author_id, b.genre_id, g.id, g.name, a.id, a.name " +
+                            "from book b " +
                             "inner join `genre` g on g.id = b.genre_id " +
                             "inner join `author` a on a.id = b.author_id " +
                             "where b.id = :id", params, new BookMapper()
@@ -71,7 +72,8 @@ public class BooksDaoJdbc implements BooksDao {
 
     @Override
     public List<Book> getAll() {
-        return namedJdbc.query("select * from book b " +
+        return namedJdbc.query("select b.id, b.name, b.publish_date, b.author_id, b.genre_id, g.id, g.name, a.id, a.name " +
+                "from book b " +
                 "inner join `genre` g on g.id = b.genre_id " +
                 "inner join `author` a on a.id = b.author_id", new BookMapper());
     }

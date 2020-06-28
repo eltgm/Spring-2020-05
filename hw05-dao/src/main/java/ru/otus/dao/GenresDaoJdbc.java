@@ -32,7 +32,8 @@ public class GenresDaoJdbc implements GenresDao {
 
     @Override
     public List<Genre> getAll() {
-        return namedJdbc.getJdbcOperations().query("select * from genre g " +
+        return namedJdbc.getJdbcOperations().query("select g.id, g.name, b.id, b.name, b.publish_date, b.author_id, b.genre_id, a.id, a.name " +
+                "from genre g " +
                 "left join `book` b on g.id = b.genre_id " +
                 "left join `author` a on b.author_id = a.id ", new GenresMapper());
     }
