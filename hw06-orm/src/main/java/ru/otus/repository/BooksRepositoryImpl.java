@@ -22,20 +22,7 @@ public class BooksRepositoryImpl implements BooksRepository {
 
     @Override
     public void update(Book book) {
-        var query = em.createQuery("update Book b " +
-                "set b.author = (select a from Author a where a.id = :a_id), " +
-                "b.genre = (select g from Genre g where g.id = :g_id), " +
-                "b.name = :name, " +
-                "b.publishDate = :date " +
-                "where b.id = :id");
-
-        query.setParameter("a_id", book.getAuthor().getId());
-        query.setParameter("g_id", book.getGenre().getId());
-        query.setParameter("name", book.getName());
-        query.setParameter("date", book.getPublishDate());
-        query.setParameter("id", book.getId());
-
-        query.executeUpdate();
+        em.merge(book);
     }
 
     @Override
@@ -45,20 +32,16 @@ public class BooksRepositoryImpl implements BooksRepository {
 
     @Override
     public List<Book> getAll() {
-        final var query = em.createQuery("select b from Book b " +
-                "join fetch b.genre " +
-                "join fetch b.author", Book.class);
+        final var query = em.createQuery("select b from Book b", Book.class);
 
         return query.getResultList();
     }
 
     @Override
     public void deleteById(long id) {
-        var query = em.createQuery("delete from Book b " +
-                "where b.id = :id");
-        query.setParameter("id", id);
+        final var book = em.find(Book.class, id);
 
-        query.executeUpdate();
+        em.remove(book);
     }
 
     @Override

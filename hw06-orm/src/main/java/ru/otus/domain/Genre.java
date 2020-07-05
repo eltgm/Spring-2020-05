@@ -19,7 +19,7 @@ public class Genre {
     private Long id;
     @Column(name = "name", nullable = false, unique = true)
     private String name;
-    @OneToMany(targetEntity = Book.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Book.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "genre_id")
     @Fetch(FetchMode.SUBSELECT)
     @ToString.Exclude

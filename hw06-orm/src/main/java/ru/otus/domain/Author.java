@@ -19,7 +19,7 @@ public class Author {
     private Long id;
     @Column(name = "name", nullable = false, unique = true)
     private String name;
-    @OneToMany(targetEntity = Book.class, fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Book.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     @Fetch(FetchMode.SUBSELECT)
     @ToString.Exclude
