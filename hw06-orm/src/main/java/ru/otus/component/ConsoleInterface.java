@@ -12,4 +12,8 @@ public interface ConsoleInterface {
     void updateBook(long bookId, String bookName, String publishDate, long authorId, long genreId);
 
     void showAllComments();
+
+    void showAllCommentsByBook(long bookId);
+
+    void showAllAuthorBooks(long authorId);
 }

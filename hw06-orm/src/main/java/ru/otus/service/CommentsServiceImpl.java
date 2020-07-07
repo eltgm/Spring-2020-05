@@ -18,4 +18,9 @@ public class CommentsServiceImpl implements CommentsService {
     public List<Comment> getAllComments() {
         return commentsRepository.getAll();
     }
+
+    @Override
+    public List<Comment> getAllCommentsByBook(long bookId) {
+        return commentsRepository.getAllByBookId(bookId);
+    }
 }

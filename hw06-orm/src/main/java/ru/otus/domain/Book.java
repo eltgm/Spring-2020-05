@@ -29,7 +29,7 @@ public class Book {
     @ManyToOne(targetEntity = Genre.class, cascade = CascadeType.MERGE)
     @JoinColumn(name = "genre_id")
     private Genre genre;
-    @OneToMany(targetEntity = Comment.class, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Comment.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     @JoinColumn(name = "book_id")
     private List<Comment> comments;

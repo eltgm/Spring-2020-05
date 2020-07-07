@@ -104,4 +104,22 @@ class BooksRepositoryImplTest {
 
         assertThat(book.orElse(null)).isNull();
     }
+
+    @DisplayName("должен вернуть количество книг в бд")
+    @Test
+    void getCount() {
+        final var count = booksRepository.getCount();
+
+        assertThat(count).isEqualTo(3);
+    }
+
+    @DisplayName("должен вернуть книгу по authorId")
+    @Test
+    void getAllByAuthor() {
+        final var books = booksRepository.getAllByAuthor(1);
+
+        assertThat(books).hasSize(2)
+                .anyMatch(book -> book.getName().equals("Animal Farm") && book.getPublishDate().equals("17.08.1945"))
+                .anyMatch(book -> book.getName().equals("Nineteen Eighty-Four") && book.getPublishDate().equals("8.06.1949"));
+    }
 }

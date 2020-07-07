@@ -46,7 +46,16 @@ public class BooksRepositoryImpl implements BooksRepository {
 
     @Override
     public long getCount() {
-        var query = em.createQuery("select count(b) from Book b");
+        final var query = em.createQuery("select count(b) from Book b");
         return (long) query.getSingleResult();
+    }
+
+    @Override
+    public List<Book> getAllByAuthor(long authorId) {
+        final var query = em.createQuery("select b from Book b " +
+                "where b.author.id = :authorId", Book.class);
+        query.setParameter("authorId", authorId);
+
+        return query.getResultList();
     }
 }

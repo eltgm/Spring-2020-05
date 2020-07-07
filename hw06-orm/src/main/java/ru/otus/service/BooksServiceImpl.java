@@ -45,4 +45,9 @@ public class BooksServiceImpl implements BooksService {
     public void updateBook(Book book) {
         booksRepository.update(book);
     }
+
+    @Override
+    public List<Book> getAllBooksByAuthor(long authorId) {
+        return booksRepository.getAllByAuthor(authorId);
+    }
 }

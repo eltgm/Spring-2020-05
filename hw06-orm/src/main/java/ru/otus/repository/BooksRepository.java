@@ -17,4 +17,6 @@ public interface BooksRepository {
     void deleteById(long id);
 
     long getCount();
+
+    List<Book> getAllByAuthor(long authorId);
 }

@@ -100,6 +100,20 @@ public class ConsoleComponent implements ConsoleInterface {
         System.out.println(Arrays.deepToString(commentsService.getAllComments().toArray()));
     }
 
+    @ShellMethod(value = "Show all comments by book ID", key = {"s-c-b", "show-comments-book"})
+    @ShellMethodAvailability(value = "isLibraryCommandAvailable")
+    @Override
+    public void showAllCommentsByBook(long bookId) {
+        System.out.println(Arrays.deepToString(commentsService.getAllCommentsByBook(bookId).toArray()));
+    }
+
+    @ShellMethod(value = "Show all books by author ID", key = {"s-a-a", "show-all-author"})
+    @ShellMethodAvailability(value = "isLibraryCommandAvailable")
+    @Override
+    public void showAllAuthorBooks(long authorId) {
+        System.out.println(Arrays.deepToString(booksService.getAllBooksByAuthor(authorId).toArray()));
+    }
+
     private Availability isLibraryCommandAvailable() {
         return userName == null ? Availability.unavailable("Login first") : Availability.available();
     }

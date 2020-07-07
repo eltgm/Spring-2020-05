@@ -14,4 +14,6 @@ public interface BooksService {
     void createNewBook(Book book);
 
     void updateBook(Book book);
+
+    List<Book> getAllBooksByAuthor(long authorId);
 }

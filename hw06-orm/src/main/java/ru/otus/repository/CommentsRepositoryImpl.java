@@ -21,16 +21,23 @@ public class CommentsRepositoryImpl implements CommentsRepository {
     }
 
     @Override
+    public List<Comment> getAllByBookId(long bookId) {
+        final var query = em.createQuery("select c from Comment c " +
+                "where c.bookId = :bookId", Comment.class);
+        query.setParameter("bookId", bookId);
+
+        return query.getResultList();
+    }
+
+    @Override
     public void create(Comment comment) {
         em.persist(comment);
     }
 
     @Override
     public void deleteById(long id) {
-        final var query = em.createQuery("delete from Comment c " +
-                "where c.id = :id");
-        query.setParameter("id", id);
+        final var book = em.find(Comment.class, id);
 
-        query.executeUpdate();
+        em.remove(book);
     }
 }
