@@ -21,15 +21,6 @@ public class CommentsRepositoryImpl implements CommentsRepository {
     }
 
     @Override
-    public List<Comment> getAllByBookId(long bookId) {
-        final var query = em.createQuery("select c from Comment c " +
-                "where c.bookId = :bookId", Comment.class);
-        query.setParameter("bookId", bookId);
-
-        return query.getResultList();
-    }
-
-    @Override
     public void create(Comment comment) {
         em.persist(comment);
     }

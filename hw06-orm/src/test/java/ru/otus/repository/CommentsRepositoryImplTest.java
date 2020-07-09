@@ -56,14 +56,4 @@ class CommentsRepositoryImplTest {
 
         assertThat(comments).hasSize(3);
     }
-
-    @DisplayName("должен вывести все комментарии к одной книге")
-    @Test
-    void getAllByBookId() {
-        final var comments = commentsRepository.getAllByBookId(2);
-
-        assertThat(comments).hasSize(2)
-                .anyMatch(comment -> comment.getUserName().equals("Andrew") && comment.getText().equals("test2"))
-                .anyMatch(comment -> comment.getUserName().equals("George") && comment.getText().equals("test3"));
-    }
 }

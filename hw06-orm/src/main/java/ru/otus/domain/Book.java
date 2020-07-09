@@ -1,11 +1,6 @@
 package ru.otus.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -29,8 +24,8 @@ public class Book {
     @ManyToOne(targetEntity = Genre.class, cascade = CascadeType.MERGE)
     @JoinColumn(name = "genre_id")
     private Genre genre;
-    @OneToMany(targetEntity = Comment.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SUBSELECT)
+    @OneToMany(targetEntity = Comment.class, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
+    @ToString.Exclude
     private List<Comment> comments;
 }

@@ -43,4 +43,14 @@ class AuthorsRepositoryJdbcTest {
                 .allMatch(author -> !author.getName().isEmpty())
                 .allMatch(author -> !author.getBooks().isEmpty());
     }
+
+    @DisplayName("должен вернуть книгу по authorId")
+    @Test
+    void getAllByAuthor() {
+        final var books = authorsRepository.getById(1).get().getBooks();
+
+        assertThat(books).hasSize(2)
+                .anyMatch(book -> book.getName().equals("Animal Farm") && book.getPublishDate().equals("17.08.1945"))
+                .anyMatch(book -> book.getName().equals("Nineteen Eighty-Four") && book.getPublishDate().equals("8.06.1949"));
+    }
 }

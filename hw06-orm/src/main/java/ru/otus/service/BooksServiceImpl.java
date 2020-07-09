@@ -3,7 +3,9 @@ package ru.otus.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.otus.domain.Author;
 import ru.otus.domain.Book;
+import ru.otus.repository.AuthorsRepository;
 import ru.otus.repository.BooksRepository;
 
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BooksServiceImpl implements BooksService {
     private final BooksRepository booksRepository;
+    private final AuthorsRepository authorsRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -47,7 +50,8 @@ public class BooksServiceImpl implements BooksService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Book> getAllBooksByAuthor(long authorId) {
-        return booksRepository.getAllByAuthor(authorId);
+        return authorsRepository.getById(authorId).orElseGet(Author::new).getBooks();
     }
 }

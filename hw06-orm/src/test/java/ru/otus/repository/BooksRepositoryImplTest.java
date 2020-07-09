@@ -113,13 +113,13 @@ class BooksRepositoryImplTest {
         assertThat(count).isEqualTo(3);
     }
 
-    @DisplayName("должен вернуть книгу по authorId")
+    @DisplayName("должен вывести все комментарии к одной книге")
     @Test
-    void getAllByAuthor() {
-        final var books = booksRepository.getAllByAuthor(1);
+    void getAllByBookId() {
+        final var comments = booksRepository.getById(2).get().getComments();
 
-        assertThat(books).hasSize(2)
-                .anyMatch(book -> book.getName().equals("Animal Farm") && book.getPublishDate().equals("17.08.1945"))
-                .anyMatch(book -> book.getName().equals("Nineteen Eighty-Four") && book.getPublishDate().equals("8.06.1949"));
+        assertThat(comments).hasSize(2)
+                .anyMatch(comment -> comment.getUserName().equals("Andrew") && comment.getText().equals("test2"))
+                .anyMatch(comment -> comment.getUserName().equals("George") && comment.getText().equals("test3"));
     }
 }

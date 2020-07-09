@@ -27,7 +27,12 @@ public class BooksRepositoryImpl implements BooksRepository {
 
     @Override
     public Optional<Book> getById(long id) {
-        return Optional.ofNullable(em.find(Book.class, id));
+        final var book = em.find(Book.class, id);
+        if (book != null) {
+            book.getComments().isEmpty();
+        }
+
+        return Optional.ofNullable(book);
     }
 
     @Override
@@ -48,14 +53,5 @@ public class BooksRepositoryImpl implements BooksRepository {
     public long getCount() {
         final var query = em.createQuery("select count(b) from Book b");
         return (long) query.getSingleResult();
-    }
-
-    @Override
-    public List<Book> getAllByAuthor(long authorId) {
-        final var query = em.createQuery("select b from Book b " +
-                "where b.author.id = :authorId", Book.class);
-        query.setParameter("authorId", authorId);
-
-        return query.getResultList();
     }
 }

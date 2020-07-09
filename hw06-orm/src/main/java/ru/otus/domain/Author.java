@@ -1,8 +1,6 @@
 package ru.otus.domain;
 
 import lombok.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,7 +19,6 @@ public class Author {
     private String name;
     @OneToMany(targetEntity = Book.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
-    @Fetch(FetchMode.SUBSELECT)
     @ToString.Exclude
     private List<Book> books;
 }
