@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменить книгу</title>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <form class="form-group" th:action="@{/book/edit}" th:method="post">
+        <h1>Книга:</h1>
+
+        <div class="form-group">
+            <label for="id-input">ID:</label>
+            <input class="form-control" id="id-input" name="id" readonly="readonly" th:value="${book.id}" type="text"
+                   value="1"/>
+        </div>
+
+        <div class="form-group">
+            <label for="holder-input">Название книги:</label>
+            <input class="form-control" id="holder-input" name="name" th:value="${book.name}" type="text"
+                   value="John Doe"/>
+        </div>
+
+        <div class="form-group">
+            <label for="author-input">Автор:</label>
+            <input class="form-control" id="author-input" name="author" th:field="${book.author.name}" type="text"
+                   value="John Doe"/>
+        </div>
+
+        <div class="form-group">
+            <label for="genre-input">Жанр:</label>
+            <input class="form-control" id="genre-input" name="genre" th:field="${book.genre.name}" type="text"
+                   value="John Doe"/>
+        </div>
+
+        <div class="form-group">
+            <label for="year-input">Год издания:</label>
+            <input class="form-control" id="year-input" name="publishDate" th:value="${book.publishDate}" type="text"
+                   value="2020"/>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Сохранить</button>
+    </form>
+
+    <input class="btn btn-success" onclick="history.go(-1);" type="button" value="Назад"/>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Комментарии</title>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="md-form mt-0 m-1">
+        <input aria-label="ID книги" class="form-control" id="search" placeholder="Поиск по ID книги" type="text"/>
+        <input class="btn btn-success" onclick="onSearchClick()" type="submit" value="Поиск"/>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Комментарий</th>
+            <th scope="col">Автор</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comment : ${comments}">
+            <th scope="row" th:text="${comment.id}">1</th>
+            <td th:text="${comment.text}">Test</td>
+            <td th:text="${comment.userName}">John Doe</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <input class="btn btn-success" onclick="history.go(-1);" type="button" value="Назад"/>
+</div>
+</body>
+<script>
+    function onSearchClick() {
+        let id = document.getElementById("search").value;
+        window.open("http://localhost:8080/comment" + (id === "" ? "" : "?bookId=" + id), "_self");
+    }
+</script>
+</html>
