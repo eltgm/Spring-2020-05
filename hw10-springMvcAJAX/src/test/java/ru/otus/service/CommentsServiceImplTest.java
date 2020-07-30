@@ -1,4 +1,4 @@
-package otus.service;
+package ru.otus.service;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,7 +9,6 @@ import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import ru.otus.domain.Comment;
-import ru.otus.service.CommentsServiceImpl;
 
 import java.util.List;
 

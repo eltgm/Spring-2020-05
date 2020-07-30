@@ -1,4 +1,4 @@
-package otus.service;
+package ru.otus.service;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +14,6 @@ import ru.otus.domain.Author;
 import ru.otus.domain.Book;
 import ru.otus.domain.Comment;
 import ru.otus.domain.Genre;
-import ru.otus.service.BooksServiceImpl;
 
 import java.util.List;
 

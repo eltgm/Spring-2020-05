@@ -1,4 +1,4 @@
-package otus.controller;
+package ru.otus.controller;
 
 import lombok.SneakyThrows;
 import org.hamcrest.Description;
@@ -11,7 +11,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
-import ru.otus.controller.AuthorControllerImpl;
 import ru.otus.domain.Author;
 import ru.otus.domain.Book;
 import ru.otus.domain.Genre;
@@ -47,7 +46,7 @@ class AuthorControllerTest {
                 .then((Answer<List<Author>>) invocationOnMock
                         -> Collections.singletonList(new Author("1", "Arthur")));
 
-        this.mvc.perform(get("/author"))
+        this.mvc.perform(get("/api/author"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(new Matcher<>() {
                     @Override
@@ -85,7 +84,7 @@ class AuthorControllerTest {
                         .publishDate("2020")
                         .build()));
 
-        this.mvc.perform(get("/author/book/?authorId=1"))
+        this.mvc.perform(get("/api/author/1/book"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(new Matcher<>() {
                     @Override
