@@ -19,10 +19,10 @@ $(document).ready(function () {
                         <td>${book.genre.name}</td>
                         <td>${book.publishDate}</td>
                         <td>
-                            <a th:href="@{/book/edit/(id = ${book.id})}">Изменить</a>
+                            <button data-field="${book.id}" id="edit" type="button" class="btn btn-warning">Изменить</button>
                         </td>
                         <td>
-                            <a th:href="@{/book/delete/{id}(id = ${book.id})}">Удалить</a>
+                            <button data-field="${book.id}" id="delete" type="button" class="btn btn-danger">Удалить</button>
                         </td>
                     </tr>
                 `);
@@ -112,7 +112,9 @@ $(document).ready(function () {
                                    value="${book.publishDate}"/>
                         </div>
                 
-                        <input class="btn btn-primary" type="button" id="saveButton" value="Добавить"/>
+                        <input name="authorId" hidden="true" value="${book.author.id}">
+                        <input name="genreId" hidden="true" value="${book.genre.id}">
+                        <input class="btn btn-primary" type="button" id="saveButton" value="Сохранить книгу"/>
                     </form>
                 `);
             });

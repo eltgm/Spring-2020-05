@@ -15,6 +15,8 @@ public class BookDto {
     private String publishDate;
     private String author;
     private String genre;
+    private String authorId;
+    private String genreId;
 
     public Book toPojo() {
         return Book.builder()
@@ -22,9 +24,11 @@ public class BookDto {
                 .name(this.name)
                 .publishDate(this.publishDate)
                 .author(Author.builder()
+                        .id(authorId)
                         .name(this.author)
                         .build())
                 .genre(Genre.builder()
+                        .id(genreId)
                         .name(this.genre)
                         .build())
                 .build();
