@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Книги</title>
+    <link href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
+</head>
+<body>
+<div class="container" id="mainBook">
+    <div class="md-form mt-0 m-1">
+        <input aria-label="ID книги" class="form-control" id="search" placeholder="Поиск по ID книги" type="text"/>
+        <input class="btn btn-success" id="inputButton" type="submit" value="Поиск"/>
+
+        <div class="col"><a class="btn btn-success" href="createBook.html">Новая книга</a></div>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Название книги</th>
+            <th scope="col">Автор</th>
+            <th scope="col">Жанр</th>
+            <th scope="col">Год издания</th>
+        </tr>
+        </thead>
+        <tbody id="booksTable">
+
+        </tbody>
+    </table>
+
+    <input class="btn btn-success" onclick="history.go(-1);" type="button" value="Назад"/>
+</div>
+<script src="js/books.js"></script>
+</body>
+</html>
