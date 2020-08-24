@@ -13,7 +13,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.RouterFunction;
-import ru.otus.domain.*;
+import ru.otus.domain.Author;
+import ru.otus.domain.Book;
+import ru.otus.domain.Comment;
+import ru.otus.domain.Genre;
+import ru.otus.dto.BookDto;
 
 import java.util.List;
 

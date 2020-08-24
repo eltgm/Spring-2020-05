@@ -1,4 +1,4 @@
-package ru.otus.domain;
+package ru.otus.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -25,20 +25,4 @@ public class BookDto {
     private String authorId;
     @JsonProperty("genreId")
     private String genreId;
-
-    public Book toPojo() {
-        return Book.builder()
-                .id(this.id)
-                .name(this.name)
-                .publishDate(this.publishDate)
-                .author(Author.builder()
-                        .id(authorId)
-                        .name(this.author)
-                        .build())
-                .genre(Genre.builder()
-                        .id(genreId)
-                        .name(this.genre)
-                        .build())
-                .build();
-    }
 }
