@@ -33,7 +33,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin();
+                .formLogin()
+                .and()
+                .rememberMe()
+                .and()
+                .logout();
     }
 
     @Bean
