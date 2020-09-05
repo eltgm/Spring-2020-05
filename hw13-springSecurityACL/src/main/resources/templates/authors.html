@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторы</title>
+    <link href='/webjars/bootstrap/4.5.0/css/bootstrap.min.css' rel='stylesheet'>
+</head>
+<body>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Имя</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="author : ${authors}">
+            <th scope="row" th:text="${author.id}">1</th>
+            <td th:text="${author.name}">John Doe</td>
+            <td>
+                <a th:href="@{/author/book/(authorId = ${author.id})}">Показать книги</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <input class="btn btn-success" onclick="history.go(-1);" type="button" value="Назад"/>
+</div>
+</body>
+</html>
