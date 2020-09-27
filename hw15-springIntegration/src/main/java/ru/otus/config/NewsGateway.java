@@ -7,5 +7,5 @@ import ru.otus.domain.News;
 @MessagingGateway
 public interface NewsGateway {
     @Gateway(requestChannel = "newsControllerChannel")
-    void sendNews(News news);
+    String sendNews(News news);
 }

@@ -4,7 +4,7 @@ package ru.otus.service;
 import ru.otus.domain.News;
 
 public interface NewsService {
-    void sendNewsToTelegram(News news);
+    String sendNewsToTelegram(News news);
 
-    void sendNewsToTamTam(News news);
+    String sendNewsToTamTam(News news);
 }

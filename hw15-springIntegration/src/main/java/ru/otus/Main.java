@@ -20,10 +20,12 @@ public class Main {
             Thread.sleep(1000);
 
             System.out.println("Получили новость в контроллере...");
-            newsGateway.sendNews(News.builder()
+            final var result = newsGateway.sendNews(News.builder()
                     .date(new Date())
                     .text(String.valueOf(System.currentTimeMillis()))
                     .build());
+
+            System.out.println(result);
         }
     }
 }
