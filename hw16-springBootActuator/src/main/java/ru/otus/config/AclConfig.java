@@ -1,6 +1,6 @@
 package ru.otus.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.cache.ehcache.EhCacheFactoryBean;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
@@ -22,11 +22,10 @@ import ru.otus.config.mongoAcl.mongodb.MongoDBMutableAclService;
 import java.util.Objects;
 
 @Configuration
+@RequiredArgsConstructor
 public class AclConfig {
-    @Autowired
-    MongoTemplate mongoTemplate;
-    @Autowired
-    AclRepository aclRepository;
+    private final MongoTemplate mongoTemplate;
+    private final AclRepository aclRepository;
 
     @Bean
     public EhCacheBasedAclCache aclCache() {
