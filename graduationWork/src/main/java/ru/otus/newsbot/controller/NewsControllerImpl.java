@@ -21,7 +21,6 @@ public class NewsControllerImpl implements NewsController {
     public List<Status> createNews(NewsDto newsDto) {
         final var statuses = newsGateway.sendNews(dtoParser.newsDtoToPojo(newsDto));
 
-
         System.out.println(statuses);
         return statuses;
     }
